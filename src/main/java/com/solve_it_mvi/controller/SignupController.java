@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Path("/api/users")
+@Path("users")
 @ApplicationScoped
 public class SignupController {
 

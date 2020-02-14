@@ -77,7 +77,7 @@ public final class PBKDF2Hasher {
      *
      * @return true if the password and token match
      */
-    public boolean checkPassword(char[] password, String token)
+    public static boolean checkPassword(char[] password, String token)
     {
         Matcher m = layout.matcher(token);
         if (!m.matches())

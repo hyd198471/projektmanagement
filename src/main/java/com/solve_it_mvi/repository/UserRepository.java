@@ -47,10 +47,10 @@ public class UserRepository {
         return user;
     }
 
-    public User findByUsername(String username) {
+    public List<User> findByUsername(String username) {
         Query query = em.createQuery("select u from user_ u where u.userName = :username");
         query.setParameter("username",username);
-        return (User)query.getSingleResult();
+        return query.getResultList();
     }
 
 }

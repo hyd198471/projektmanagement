@@ -9,9 +9,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
-@Path("/api/roles")
+@Path("roles")
 @ApplicationScoped
 public class RoleController {
+
     @Inject
     private RoleRepository roleRepository;
 
