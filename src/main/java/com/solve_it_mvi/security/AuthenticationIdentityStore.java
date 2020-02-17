@@ -11,6 +11,7 @@ import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.security.enterprise.identitystore.CredentialValidationResult;
 import javax.security.enterprise.identitystore.IdentityStore;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 
@@ -32,10 +33,13 @@ public class AuthenticationIdentityStore implements IdentityStore {
             List<User> users = userRepository.findByUsername(usernamePassword.getCaller());
 
             if(!users.isEmpty()) {
-                String storedPassword = users.get(0).getEncodedPassword();
+                User user = users.get(0);
+                String storedPassword = user.getEncodedPassword();
                 char[] passwordToCheck = usernamePassword.getPasswordAsString().toCharArray();
                 if(storedPassword!= null && PBKDF2Hasher.checkPassword(passwordToCheck, storedPassword)) {
                     result = new CredentialValidationResult(usernamePassword.getCaller());
+                    userRepository.updateLastLogin(user, Instant.now().toEpochMilli());
+
                 } else {
                     result = CredentialValidationResult.INVALID_RESULT;
                 }

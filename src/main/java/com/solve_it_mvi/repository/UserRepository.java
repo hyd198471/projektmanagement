@@ -28,10 +28,47 @@ public class UserRepository {
 
     @Transactional(REQUIRED)
     public User create(JsonObject jsonObject) {
-        PBKDF2Hasher hasher = new PBKDF2Hasher();
-
         User user = new User();
+        createOrUpdateUser(jsonObject, user);
+        em.persist(user);
+        return user;
+    }
+
+    @Transactional(REQUIRED)
+    public User update(String username, JsonObject userUpdateDto) {
+        List<User> existedUsers = findByUsername(username);
+        if (!existedUsers.isEmpty()) {
+            User existedUser = existedUsers.get(0);
+            createOrUpdateUser(userUpdateDto, existedUser);
+            return existedUser;
+        }
+        return null;
+    }
+
+    @Transactional(REQUIRED)
+    public User updateLastLogin(User user, long lastLoginTime) {
+        user.setLastLoginDate(lastLoginTime);
+        em.merge(user);
+        return user;
+    }
+
+    @Transactional(REQUIRED)
+    public void delete(String username) {
+        List<User> existedUsers = findByUsername(username);
+        if(!existedUsers.isEmpty()) {
+            em.remove(existedUsers.get(0));
+        }
+    }
+
+    public List<User> findByUsername(String username) {
+        Query query = em.createQuery("select u from user_ u where u.userName = :username");
+        query.setParameter("username", username);
+        return query.getResultList();
+    }
+
+    private void createOrUpdateUser(JsonObject jsonObject, User user) {
         user.setUserName(jsonObject.getString("username"));
+        PBKDF2Hasher hasher = new PBKDF2Hasher();
         user.setEncodedPassword(hasher.hash(jsonObject.getString("password").toCharArray()));
         user.setLastLoginDate(Instant.now().toEpochMilli());
 
@@ -43,14 +80,5 @@ public class UserRepository {
 
         List<Role> roles = roleRepository.findRolesByIds(roleIds);
         user.setRoles(roles);
-        em.persist(user);
-        return user;
     }
-
-    public List<User> findByUsername(String username) {
-        Query query = em.createQuery("select u from user_ u where u.userName = :username");
-        query.setParameter("username",username);
-        return query.getResultList();
-    }
-
 }
