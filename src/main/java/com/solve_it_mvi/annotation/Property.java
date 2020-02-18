@@ -11,7 +11,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Qualifier
 @Retention(RUNTIME)
-@Target({TYPE, ElementType.METHOD, FIELD, PARAMETER,CONSTRUCTOR})
+@Target({TYPE, ElementType.METHOD, FIELD, PARAMETER})
 public @interface Property {
 
     @Nonbinding String value() default "";
