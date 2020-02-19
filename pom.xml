@@ -17,6 +17,24 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>6.2.3</version>
+                <configuration>
+                    <url>jdbc:postgresql://localhost/projectmanagement</url>
+                    <user>pm</user>
+                    <password>pm123</password>
+                </configuration>
+                <dependencies>
+                    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.2.10</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -53,8 +71,5 @@
             <artifactId>javax.annotation-api</artifactId>
             <version>1.3.2</version>
         </dependency>
-
     </dependencies>
-
-
 </project>
