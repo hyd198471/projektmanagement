@@ -26,10 +26,6 @@ public class Subject {
     @JoinColumn(name = "project_id", referencedColumnName = "id")
     private List<Project> projects;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_membership_id", referencedColumnName = "id")
-    private List<ProjectMembership> projectMemberships;
-
     public String getUsername() {
         return username;
     }
@@ -70,11 +66,4 @@ public class Subject {
         this.projects = projects;
     }
 
-    public List<ProjectMembership> getProjectMemberships() {
-        return projectMemberships;
-    }
-
-    public void setProjectMemberships(List<ProjectMembership> projectMemberships) {
-        this.projectMemberships = projectMemberships;
-    }
 }

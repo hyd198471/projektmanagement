@@ -19,9 +19,7 @@ import java.util.List;
 import static javax.transaction.Transactional.TxType.REQUIRED;
 
 @ApplicationScoped
-public class UserRepository {
-    @PersistenceContext(unitName = "NewPersistenceUnit")
-    private EntityManager em;
+public class UserRepository extends AbstractRepository{
 
     @Inject
     private RoleRepository roleRepository;

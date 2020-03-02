@@ -17,14 +17,10 @@ public class Project {
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
     private Project parent;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "parent_id")
-    @OrderColumn
+    @OrderColumn(name = "sub_projects_position")
     private List<Project> subProjects = new LinkedList<>();
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_membership_id", referencedColumnName = "id")
-    private List<ProjectMembership> projectMemberships;
 
     public Long getId() {
         return id;

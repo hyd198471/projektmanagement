@@ -31,4 +31,15 @@
             <role-name>ops</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>create project</web-resource-name>
+            <url-pattern>/api/projects</url-pattern>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+            <role-name>developer</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>
