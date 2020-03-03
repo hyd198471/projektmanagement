@@ -17,6 +17,16 @@ public class User {
 
     private long lastLoginDate;
 
+    @Column(name = "type")
+    private SubjectType type;
+
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinTable(name="user_project",
+            joinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")},
+            inverseJoinColumns = {@JoinColumn(name="project_id", referencedColumnName="id")}
+    )
+    private List<Project> projects;
+
     @ManyToMany(cascade=CascadeType.MERGE,fetch=FetchType.LAZY)
     @JoinTable(name="user_role",
             joinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")},
@@ -62,6 +72,22 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public SubjectType getType() {
+        return type;
+    }
+
+    public void setType(SubjectType type) {
+        this.type = type;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 
     @Override

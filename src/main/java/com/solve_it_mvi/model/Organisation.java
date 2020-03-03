@@ -12,11 +12,14 @@ public class Organisation {
     @Column(name = "display_name")
     private String displayName;
 
+    @Column(name = "type")
+    private OrganisationType type;
+
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_id", referencedColumnName = "id")
+    @JoinColumn(name = "organisation_id", referencedColumnName = "id")
     private List<Project> projects;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "subject_id", referencedColumnName = "id")
-    private List<Subject> subjects;
+    @JoinColumn(name = "organisation_id", referencedColumnName = "id")
+    private List<User> users;
 }
