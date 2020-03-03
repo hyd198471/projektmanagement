@@ -1,10 +1,10 @@
 drop table if exists public.organisation cascade;
 drop table if exists public.project cascade;
 drop table if exists public.role cascade;
-drop table if exists public.sequence cascade;
 drop table if exists public.subject cascade;
 drop table if exists public.user_ cascade;
 drop table if exists public.user_role cascade;
+drop table if exists public.user_project cascade;
 
 CREATE TABLE public.organisation (
     id bigint NOT NULL,
@@ -24,16 +24,12 @@ CREATE TABLE public.role (
     display_name character varying(255)
 );
 
-CREATE TABLE public.sequence (
-    seq_name character varying(50) NOT NULL,
-    seq_count numeric(38,0)
-);
-
 CREATE TABLE public.user_ (
     id bigint NOT NULL,
     encodedpassword character varying(255),
     lastlogindate bigint,
     username character varying(255),
+    type character varying(255),
     organisation_id bigint
 );
 
@@ -55,9 +51,6 @@ ALTER TABLE ONLY public.project
 
 ALTER TABLE ONLY public.role
     ADD CONSTRAINT role_pkey PRIMARY KEY (id);
-
-ALTER TABLE ONLY public.sequence
-    ADD CONSTRAINT sequence_pkey PRIMARY KEY (seq_name);
 
 ALTER TABLE ONLY public.user_
     ADD CONSTRAINT user__pkey PRIMARY KEY (id);

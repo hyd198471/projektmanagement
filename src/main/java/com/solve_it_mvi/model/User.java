@@ -18,7 +18,8 @@ public class User {
     private long lastLoginDate;
 
     @Column(name = "type")
-    private SubjectType type;
+    @Enumerated(EnumType.STRING)
+    private UserType type;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name="user_project",
@@ -74,11 +75,11 @@ public class User {
         this.id = id;
     }
 
-    public SubjectType getType() {
+    public UserType getType() {
         return type;
     }
 
-    public void setType(SubjectType type) {
+    public void setType(UserType type) {
         this.type = type;
     }
 

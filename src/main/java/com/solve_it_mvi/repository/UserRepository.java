@@ -1,6 +1,7 @@
 package com.solve_it_mvi.repository;
 
 import com.solve_it_mvi.model.Role;
+import com.solve_it_mvi.model.UserType;
 import com.solve_it_mvi.model.User;
 import com.solve_it_mvi.util.PBKDF2Hasher;
 
@@ -67,7 +68,7 @@ public class UserRepository extends AbstractRepository{
         PBKDF2Hasher hasher = new PBKDF2Hasher();
         user.setEncodedPassword(hasher.hash(jsonObject.getString("password").toCharArray()));
         user.setLastLoginDate(Instant.now().toEpochMilli());
-
+        user.setType(UserType.valueOf(jsonObject.getString("type")));
         JsonArray roleIdsJson = jsonObject.getJsonArray("roleIds");
         List<Long> roleIds = new ArrayList<>();
         for (int i = 0; i < roleIdsJson.size(); i++) {

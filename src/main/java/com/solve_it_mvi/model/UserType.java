@@ -1,6 +1,6 @@
 package com.solve_it_mvi.model;
 
-public enum SubjectType {
+public enum UserType {
     INTERNAL,
     CUSTOMER,
     PARTNER,
