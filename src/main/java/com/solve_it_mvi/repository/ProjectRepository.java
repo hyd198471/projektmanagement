@@ -29,14 +29,14 @@ public class ProjectRepository extends AbstractRepository {
         if(parentId == null) {
             project.setParent(null);
         } else {
-            int parentIdInt = parentId.asJsonObject().getInt("parentId");
-            Project existedParentProject = em.find(Project.class, parentIdInt);
+            long parentIdLong = Long.parseLong(parentId.toString());
+            Project existedParentProject = em.find(Project.class, parentIdLong);
             project.setParent(existedParentProject);
         }
 
         project.setSubProjects(getSubProjects(project, jsonObject));
 
-        em.persist(jsonObject);
+        em.persist(project);
     }
 
     private List<Project> getSubProjects(Project project, JsonObject jsonObject) {
@@ -49,8 +49,8 @@ public class ProjectRepository extends AbstractRepository {
             Project newProject = new Project();
             newProject.setDisplayName(subDisplayName);
             newProject.setParent(project);
-            List<Project> subProjects1 = !subProjectArray.isEmpty() ? getSubProjects(newProject, subProjectJson) : new LinkedList<>();
-            newProject.setSubProjects(subProjects1);
+            List<Project> newSubProjects = !subProjectArray.isEmpty() ? getSubProjects(newProject, subProjectJson) : new LinkedList<>();
+            newProject.setSubProjects(newSubProjects);
             subProjects.add(newProject);
         }
         return subProjects;

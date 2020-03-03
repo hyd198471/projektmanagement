@@ -16,15 +16,11 @@ import javax.ws.rs.core.Response;
 @ApplicationScoped
 public class ProjectController {
 
-    private final ProjectRepository projectRepository;
-
     @Inject
-    public ProjectController(ProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
-    }
+    private ProjectRepository projectRepository;
 
     @POST
-    @RolesAllowed(Constants.ADMIN)
+    @RolesAllowed({Constants.ADMIN,Constants.DEVELOPER})
     public Response createProject(JsonObject projectObjectDto) {
         projectRepository.create(projectObjectDto);
         return Response.ok(projectObjectDto).build();

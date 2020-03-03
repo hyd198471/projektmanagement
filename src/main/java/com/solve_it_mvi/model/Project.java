@@ -10,7 +10,7 @@ public class Project {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "display_name")
+    @Column(name = "display_name",unique = true)
     private String displayName;
 
     @ManyToOne(optional = true)
