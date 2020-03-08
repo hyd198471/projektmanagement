@@ -39,7 +39,7 @@ public class UserController {
 
     @GET
     @Path("/{username}")
-    @PermitAll
+    @RolesAllowed({Constants.CUSTOMER, Constants.ADMIN, Constants.DEVELOPER, Constants.OPERATIONS})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserByEmail(@PathParam("username") String username) {
         List<User> foundUsers = userRepository.findByUsername(username);

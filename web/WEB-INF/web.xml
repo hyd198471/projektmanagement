@@ -24,6 +24,16 @@
             <url-pattern>/api/users</url-pattern>
             <http-method>PUT</http-method>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>get user</web-resource-name>
+            <url-pattern>/api/users</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>get projects</web-resource-name>
+            <url-pattern>/api/projects</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
         <auth-constraint>
             <role-name>admin</role-name>
             <role-name>customer</role-name>

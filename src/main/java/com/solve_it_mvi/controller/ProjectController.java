@@ -26,7 +26,4 @@ public class ProjectController {
         return Response.ok(projectObjectDto).build();
     }
 
-
-
-
 }

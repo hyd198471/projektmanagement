@@ -26,7 +26,7 @@ public class ProjectRepository extends AbstractRepository {
         JsonValue parentId = jsonObject.get("parentId");
 
         project.setDisplayName(displayName);
-        if(parentId == null) {
+        if (parentId == null) {
             project.setParent(null);
         } else {
             long parentIdLong = Long.parseLong(parentId.toString());
@@ -45,7 +45,7 @@ public class ProjectRepository extends AbstractRepository {
         for (int i = 0; i < subProjectJsons.size(); i++) {
             JsonObject subProjectJson = subProjectJsons.getJsonObject(i);
             String subDisplayName = subProjectJson.getString("displayName");
-            JsonArray subProjectArray= subProjectJson.getJsonArray("subProjects");
+            JsonArray subProjectArray = subProjectJson.getJsonArray("subProjects");
             Project newProject = new Project();
             newProject.setDisplayName(subDisplayName);
             newProject.setParent(project);
