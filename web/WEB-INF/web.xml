@@ -34,6 +34,11 @@
             <url-pattern>/api/projects</url-pattern>
             <http-method>GET</http-method>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>me</web-resource-name>
+            <url-pattern>/api/auth/me</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
         <auth-constraint>
             <role-name>admin</role-name>
             <role-name>customer</role-name>
