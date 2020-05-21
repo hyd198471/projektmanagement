@@ -10,7 +10,7 @@
             <property name="eclipselink.ddl-generation.output-mode" value="database" />
             <property name="eclipselink.ddl-generation-mode" value="ddl_database_generation" />
             <property name="eclipselink.deploy-on-startup" value="true" />
-            <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost/projectmanagement"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:postgresql://db/projectmanagement"/>
             <property name="eclipselink.jdbc.driver" value="org.postgresql.ds.PGSimpleDataSource"/>
             <property name="eclipselink.jdbc.user" value="pm"/>
             <property name="eclipselink.jdbc.password" value="pm123"/>
