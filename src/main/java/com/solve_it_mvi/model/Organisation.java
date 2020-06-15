@@ -6,7 +6,8 @@ import java.util.List;
 @Entity(name = "organisation")
 public class Organisation {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="organisations_id_seq")
+    @SequenceGenerator(name="organisations_id_seq", sequenceName="organisations_id_seq", allocationSize=1)
     private Long id;
 
     @Column(name = "display_name")

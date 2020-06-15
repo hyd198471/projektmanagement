@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>JEE 8 Security Example</title>
   </head>
   <body>
-  $END$
+  JEE 8 Security
   </body>
 </html>

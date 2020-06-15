@@ -7,7 +7,8 @@ import java.util.List;
 @Entity(name = "project")
 public class Project {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="projects_id_seq")
+    @SequenceGenerator(name="projects_id_seq", sequenceName="projects_id_seq", allocationSize=1)
     private Long id;
 
     @Column(name = "display_name",unique = true)
