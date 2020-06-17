@@ -1,6 +1,4 @@
-FROM payara/server-full:173
-
-# Setup configuration
-USER payara
-COPY postgresql-9.4.1212.jar /opt/payara41/glassfish/domains/domain1/lib
-COPY domain.xml /opt/payara41/glassfish/domains/domain1/config
+FROM payara/server-full
+COPY postgresql-42.2.12.jar $PAYARA_DIR/glassfish/domains/production/lib
+COPY domain.xml $PAYARA_DIR/glassfish/domains/production/config
+COPY target/projektmanagement.war $DEPLOY_DIR/

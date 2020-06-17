@@ -36,11 +36,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.2.3</version>
-            </plugin>
         </plugins>
         <finalName>projektmanagement</finalName>
     </build>
@@ -96,6 +91,12 @@
             <artifactId>javax.security.enterprise-api</artifactId>
             <version>1.0</version>
         </dependency>
-
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>projectmanagement.repo</id>
+            <name>projectmanagement-repo</name>
+            <url>file:///C:/Users/hu/work/projektmanagement/deployments</url>
+        </repository>
+    </distributionManagement>
 </project>

@@ -1,23 +1,23 @@
 version: "3.1"
 services:
 
-  db:
+  postgresdb:
     image: postgres:latest
     ports:
-      - "6432:5432"
+      - "5432:5432"
     environment:
       POSTGRES_USER: pm
       POSTGRES_PASSWORD: pm123
       POSTGRES_DB: projectmanagement
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - /var/lib/postgresql/data
 
 
-  my-payara-project:
-    image: my-payara-project
+  projectmanagement-backend:
+    image: projectmanagement-backend
     ports:
-      - "9090:8080"
-      - "5858:4848"
-      - "9191:8181"
+      - "8080:8080"
+      - "4848:4848"
+      - "8181:8181"
     volumes:
-      - ~/my-payara-project/deployments:/opt/payara/deployments
+      - ./deployments:/opt/payara/deployments
